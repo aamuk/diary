@@ -13,6 +13,18 @@ CREATE TABLE IF NOT EXISTS `projects` (
 `start_date` datetime,
 `status` varchar(255),
 PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;DROP TABLE IF EXISTS `projects`;
+
+CREATE TABLE IF NOT EXISTS `technologies` (
+`id` int NOT NULL AUTO_INCREMENT,
+`name` varchar(255),
+PRIMARY KEY (`id`)
+
+CREATE TABLE IF NOT EXISTS `projects_technologies` (
+`id` int NOT NULL AUTO_INCREMENT,
+`project_id` varchar(255),
+`technologies_id` varchar(255),
+PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
@@ -39,6 +51,18 @@ COMMIT;
 ``
 
 ````
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ### Other dump
