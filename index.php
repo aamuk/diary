@@ -5,6 +5,8 @@ $connection = require_once 'pdo.php';
 // Read notes from database
 $notes = $connection->getNotes();
 
+$projects = $connection->getProjects();
+
 $currentNote = [
     'id' => '',
     'title' => '',
@@ -26,6 +28,34 @@ if (isset($_GET['id'])) {
     <link rel="stylesheet" href="app.css">
 </head>
 <body>
+
+<!-- Projects -->
+<h2>Projects</h2>
+<div>
+        <div class="">
+        <?php foreach ($projects as $project): ?>
+            <div class="">
+                <div class="">
+                    <a href="?id=<?php echo $project['id'] ?>">
+                        <?php echo $project['name'] ?>
+                    </a>
+                </div>
+                <div>
+                    <img src="<?php echo $project['image'] ?>" alt="">
+                </div>
+                <div class="">
+                    <?php echo $project['description'] ?>
+                </div>
+                <small><?php echo date('d/m/Y H:i', strtotime($project['start_date'])) ?></small>
+
+            </div>
+        <?php endforeach; ?>
+    </div>
+</div>
+
+
+<!-- Notes -->
+<h2>Notes</h2>
 <div>
     <form class="new-note" action="create.php" method="post">
         <input type="hidden" name="id" value="<?php echo $currentNote['id'] ?>">

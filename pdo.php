@@ -7,7 +7,7 @@ class Connection
     public function __construct()
     {
         try {
-            $this->pdo = new PDO('mysql:server=localhost;dbname=notes', 'root', 'lollol');
+            $this->pdo = new PDO('mysql:server=localhost;dbname=diary', 'root', 'lollol');
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $exception) {
             echo "ERROR: " . $exception->getMessage();
@@ -15,6 +15,20 @@ class Connection
 
     }
 
+    /*
+    * Methods for projects
+    */
+
+    public function getProjects()
+    {
+        $statement = $this->pdo->prepare("SELECT * FROM projects ORDER BY start_date DESC");
+        $statement->execute();
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /*
+    * Methods for notes
+    */
     public function getNotes()
     {
         $statement = $this->pdo->prepare("SELECT * FROM notes ORDER BY create_date DESC");
