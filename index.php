@@ -35,21 +35,22 @@ if (isset($_GET['id'])) {
 <div>
         <div class="">
         <?php foreach ($projects as $project): ?>
-            <div class="">
-                <div class="">
-                    <a href="?id=<?php echo $project['id'] ?>">
-                        <?php echo $project['name'] ?>
-                    </a>
-                </div>
-                <div>
-                    <img src="<?php echo $project['image'] ?>" alt="">
-                </div>
-                <div class="">
-                    <?php echo $project['description'] ?>
-                </div>
-                <small><?php echo date('d/m/Y H:i', strtotime($project['start_date'])) ?></small>
 
+            <div class="mx-auto max-w-md overflow-hidden rounded-lg bg-white shadow m-4">
+                <img src="<?php echo $project['image'] ?>" class="object-contain align-middle" alt="" />
+                <div class="p-4">
+                    <p class="mb-1 text-sm text-primary-500">Started • <time><?php echo date('d/m/Y', strtotime($project['start_date'])) ?></time></p>
+                    <p class="mb-1 text-sm text-primary-500">Status • <?php echo $project['status'] ?></p>
+                    <a href="?id=<?php echo $project['id'] ?>">
+                        <h3 class="text-xl font-medium text-gray-900"><?php echo $project['name'] ?></h3>
+                    </a>
+                    <p class="mt-1 text-gray-500"><?php echo $project['description'] ?></p>
+                    <div class="mt-4 flex gap-2">
+                        <span class="inline-flex items-center gap-1 rounded-full bg-orange-50 px-2 py-1 text-xs font-semibold text-orange-600"> Wordpress </span>
+                    </div>
+                </div>
             </div>
+
         <?php endforeach; ?>
     </div>
 </div>
